@@ -1,0 +1,31 @@
+Grouping the data by 'department_name' and 'Region':
+df_grouped_dep_region = insta_filtered.groupby(['department_name', 'Region']).size().unstack()
+
+This line takes dataset insta_filtered and groups it by two columns: 'department_name' and 'Region'.
+.size() calculates the size of each group (i.e., the count of occurrences of each combination of department and region).
+.unstack() reorganizes the grouped data into a structured table format, where the 'Region' values become columns.
+Sorting the grouped data based on the 'South' region:
+df_grouped_dep_region_sort = df_grouped_dep_region.sort_values(by='South', ascending=False)
+This line sorts the grouped data (df_grouped_dep_region) based on the values in the 'South' column, in descending order (ascending=False).
+This is done to visualize the popularity of departments in the 'South' region, from highest to lowest.
+
+Plotting the data using a bar chart:
+
+colors = ['green', 'orange', 'blue', 'purple']
+bar_dep_region = df_grouped_dep_region_sort.plot(kind='bar', stacked=True, color=colors)
+Here, we set up a list of colors to use in the bar chart.
+Then, we create a bar chart (kind='bar') using the sorted grouped data (df_grouped_dep_region_sort), where bars for each department will be stacked on top of each other (stacked=True).
+We assign this plot to the variable bar_dep_region for further customization if needed.
+
+Adding title and axis labels:
+plt.title('Department Popularity among Region')
+plt.xlabel('Department')
+plt.ylabel('Number of Orders')
+These lines set the title, xlabel (label for the x-axis), and ylabel (label for the y-axis) for the plot.
+
+Adjusting layout and displaying the plot:
+plt.tight_layout()
+plt.show()
+
+plt.tight_layout() adjusts the layout to prevent overlapping of plot elements.
+plt.show() displays the plot on the screen.
